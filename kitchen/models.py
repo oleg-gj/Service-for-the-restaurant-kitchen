@@ -11,3 +11,4 @@ class Dish(models.Model):
         on_delete=models.CASCADE
     )
     cooks = models.ManyToManyField("Cook", related_name="dishes")
+    ingredients = models.ManyToManyField("Ingredient", related_name="dishes")

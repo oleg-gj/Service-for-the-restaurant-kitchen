@@ -17,3 +17,8 @@ class Dish(models.Model):
 class DishType(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField(blank=True, null=True)
+
+
+class Ingredient(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    caloric_content = models.IntegerField(default=0)

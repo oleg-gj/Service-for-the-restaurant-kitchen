@@ -1,5 +1,22 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+
+from kitchen.models import Cook, Dish, DishType
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the kitchen index.")
+    """View function for the home page of the site."""
+    num_cooks = Cook.objects.count()
+    num_dishes = Dish.objects.count()
+    num_dishes_type = DishType.objects.count()
+
+    num_visits = request.session.get("num_visits", 0)
+    request.session["num_visits"] = num_visits + 1
+
+    context = {
+        "num_cooks": num_cooks,
+        "num_dishes": num_dishes,
+        "num_dishes_type": num_dishes_type,
+        "num_visits": num_visits + 1,
+    }
+
+    return render(request, "kitchen/index.html", context=context)

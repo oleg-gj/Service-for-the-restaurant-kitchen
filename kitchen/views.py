@@ -25,3 +25,8 @@ def index(request):
 
 class CookListView(generic.ListView):
     model = Cook
+
+
+class CookDetailView(generic.DetailView):
+    model = Cook
+    queryset = Cook.objects.prefetch_related("dishes")

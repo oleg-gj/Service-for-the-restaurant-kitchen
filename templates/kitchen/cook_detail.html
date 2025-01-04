@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cook Detail</title>
+</head>
+<body>
+<h1>
+  Username: {{ cook.username }}
+</h1>
+
+<p><strong>First name:</strong> {{ cook.first_name }}</p>
+<p><strong>Last name:</strong> {{ cook.last_name }}</p>
+<p><strong>Experience:</strong> {{ cook.year_of_experience }}</p>
+<p><strong>Is staff:</strong> {{ cook.is_staff }}</p>
+
+<div>
+  <h4>Dishes</h4>
+
+  {% for dish in cook.dishes.all %}
+    <hr>
+    <p><strong>Name:</strong> {{ dish.name }}</p>
+    <p><strong>Description:</strong> {{ dish.description }}</p>
+    <p><strong>Price:</strong> {{ dish.price }}</p>
+
+  {% empty %}
+    <p>No dishes!</p>
+  {% endfor %}
+</div>
+
+</body>
+</html>

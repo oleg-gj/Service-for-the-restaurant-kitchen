@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
 from kitchen.models import Cook, Dish, DishType
@@ -30,3 +31,17 @@ class CookListView(generic.ListView):
 class CookDetailView(generic.DetailView):
     model = Cook
     queryset = Cook.objects.prefetch_related("dishes")
+
+
+class CookCreateView(generic.CreateView):
+    model = Cook
+    fields = "__all__"
+    success_url = reverse_lazy("kitchen:cook-list")
+    template_name = "kitchen/cook_form.html"
+
+
+class CookUpdateView(generic.UpdateView):
+    model = Cook
+    fields = "__all__"
+    success_url = reverse_lazy("kitchen:cook-list")
+    template_name = "kitchen/cook_form.html"

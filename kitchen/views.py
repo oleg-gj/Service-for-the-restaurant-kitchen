@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views import generic
 
 from kitchen.models import Cook, Dish, DishType
 
@@ -20,3 +21,7 @@ def index(request):
     }
 
     return render(request, "kitchen/index.html", context=context)
+
+
+class CookListView(generic.ListView):
+    model = Cook

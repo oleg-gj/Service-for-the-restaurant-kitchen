@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ dish }}</title>
+</head>
+<body>
+<h1>
+  Dish: {{ dish.name }}
+</h1>
+
+<p><strong>Price:</strong> {{ dish.price }}</p>
+<p><strong>Dish Type:</strong> {{ dish.dish_type }}</p>
+<p><strong>Cooks:</strong></p>
+  {% for cook in dish.cooks.all %}
+    <hr>
+    <li>{{ cook }}</li>
+    <hr>
+
+  {% empty %}
+    <p>No cooks!</p>
+  {% endfor %}
+<p><strong>Description:</strong> {{ dish.description }}</p>
+
+<div>
+  <h3>Ingredients:</h3>
+
+  {% for ingredient in dish.ingredients.all %}
+    <li>{{ ingredient}}</li>
+
+  {% empty %}
+    <p>No ingredients!</p>
+  {% endfor %}
+</div>
+
+</body>
+</html>

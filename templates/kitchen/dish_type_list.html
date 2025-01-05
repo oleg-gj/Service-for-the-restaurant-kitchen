@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dish Type List</title>
+</head>
+<body>
+<h1>Dish Type List</h1>
+
+{% if dishtype_list %}
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Update</th>
+      <th>Delete</th>
+    </tr>
+
+    {% for dish in dishtype_list %}
+      <tr>
+        <td>
+          {{ dish.id }}
+        </td>
+        <td>
+          {{ dish.name }}
+        </td>
+        <td>
+          <a href="{% url 'kitchen:dish-type-update' pk=dish.id %}">Update</a>
+        </td>
+        <td>
+          <a href="{% url 'kitchen:dish-type-delete' pk=dish.id %}">Delete</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+
+{% else %}
+  <p>There are no dishes in the service.</p>
+{% endif %}
+
+</body>
+</html>

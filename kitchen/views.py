@@ -52,11 +52,33 @@ class CookDeleteView(generic.DeleteView):
     template_name = "kitchen/cook_delete.html"
     success_url = reverse_lazy("kitchen:cook-list")
 
+
 class DishListView(generic.ListView):
     model = Dish
+
 
 class DishDetailView(generic.DetailView):
     model = Dish
     queryset = (
         Dish.objects.prefetch_related("cooks").select_related("dish_type")
     )
+
+
+class DishCreateView(generic.CreateView):
+    model = Dish
+    fields = "__all__"
+    success_url = reverse_lazy("kitchen:dish-list")
+    template_name = "kitchen/dish_form.html"
+
+
+class DishUpdateView(generic.UpdateView):
+    model = Dish
+    fields = "__all__"
+    success_url = reverse_lazy("kitchen:dish-list")
+    template_name = "kitchen/dish_form.html"
+
+
+class DishDeleteView(generic.DeleteView):
+    model = Dish
+    template_name = "kitchen/dish_delete.html"
+    success_url = reverse_lazy("kitchen:dish-list")

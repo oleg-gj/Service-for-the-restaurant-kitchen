@@ -54,3 +54,9 @@ class CookDeleteView(generic.DeleteView):
 
 class DishListView(generic.ListView):
     model = Dish
+
+class DishDetailView(generic.DetailView):
+    model = Dish
+    queryset = (
+        Dish.objects.prefetch_related("cooks").select_related("dish_type")
+    )

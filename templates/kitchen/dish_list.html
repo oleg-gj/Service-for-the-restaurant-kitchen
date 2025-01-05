@@ -28,12 +28,12 @@
         <td>
           {{ dish.price }}
         </td>
-{#        <td>#}
-{#          <a href="{% url 'kitchen:dish-update' pk=dish.id %}">Update</a>#}
-{#        </td>#}
-{#        <td>#}
-{#          <a href="{% url 'kitchen:dish-delete' pk=dish.id %}">Delete</a>#}
-{#        </td>#}
+        <td>
+          <a href="{% url 'kitchen:dish-update' pk=dish.id %}">Update</a>
+        </td>
+        <td>
+          <a href="{% url 'kitchen:dish-delete' pk=dish.id %}">Delete</a>
+        </td>
       </tr>
     {% endfor %}
   </table>

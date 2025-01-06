@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from kitchen.models import Cook, Dish, DishType
+from kitchen.models import Cook, Dish, DishType, Ingredient
 
 
 def index(request):
@@ -107,3 +107,27 @@ class DishTypeDeleteView(generic.DeleteView):
     model = Dish
     template_name = "kitchen/dish_type_delete.html"
     success_url = reverse_lazy("kitchen:dish-type-list")
+
+
+class IngredientListView(generic.ListView):
+    model = Ingredient
+
+
+class IngredientCreateView(generic.CreateView):
+    model = Ingredient
+    fields = "__all__"
+    success_url = reverse_lazy("kitchen:ingredient-list")
+    template_name = "kitchen/ingredient_form.html"
+
+
+class IngredientUpdateView(generic.UpdateView):
+    model = Ingredient
+    fields = "__all__"
+    success_url = reverse_lazy("kitchen:ingredient-list")
+    template_name = "kitchen/ingredient_form.html"
+
+
+class IngredientDeleteView(generic.DeleteView):
+    model = Ingredient
+    template_name = "kitchen/ingredient_delete.html"
+    success_url = reverse_lazy("kitchen:ingredient-list")

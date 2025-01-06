@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ingredient List</title>
+</head>
+<body>
+<h1>Ingredient List</h1>
+
+{% if ingredient_list %}
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Calories</th>
+      <th>Update</th>
+      <th>Delete</th>
+    </tr>
+
+    {% for ingredient in ingredient_list %}
+      <tr>
+        <td>
+          {{ ingredient.id }}
+        </td>
+        <td>
+          {{ ingredient.name }}
+        </td>
+        <td>
+          {{ ingredient.caloric_content }}
+        </td>
+        <td>
+          <a href="{% url 'kitchen:ingredient-update' pk=ingredient.id %}">Update</a>
+        </td>
+        <td>
+          <a href="{% url 'kitchen:ingredient-delete' pk=ingredient.id %}">Delete</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+
+{% else %}
+  <p>There are no dishes in the service.</p>
+{% endif %}
+
+</body>
+</html>

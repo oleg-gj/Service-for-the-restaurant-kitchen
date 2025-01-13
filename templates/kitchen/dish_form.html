@@ -1,19 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Dish</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
 
-<h1>{{ cook|yesno:"Update a Dish, Create a Dish" }}</h1>
+{% block page_description %}
+  {% if dish %}
+    <h1 class="text-white font-weight-black pt-3 mt-n5">Update</h1>
+    <p class="lead text-white mt-3">On this page you can update new dish</p>
+  {% else %}
+    <h1 class="text-white font-weight-black pt-3 mt-n5">Create</h1>
+    <p class="lead text-white mt-3">On this page you can create new dish</p>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
 
 <form action="" method="post" novalidate>
   {% csrf_token %}
-  {{ form }}
+  {{ form|crispy }}
 
-  <input type="submit" value="Submit">
+  <input class="btn btn-dark" type="submit" value="Submit">
 </form>
-
-</body>
-</html>
+{% endblock %}

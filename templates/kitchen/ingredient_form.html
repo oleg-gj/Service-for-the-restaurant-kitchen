@@ -1,19 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Ingredient</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-<h1>{{ ingredient|yesno:"Update a Ingredient, Create a Ingredient" }}</h1>
+{% block page_description %}
+  {% if ingredient %}
+    <h1 class="text-white font-weight-black pt-3 mt-n5">Update</h1>
+    <p class="lead text-white mt-3">On this page you can update new ingredient</p>
+  {% else %}
+    <h1 class="text-white font-weight-black pt-3 mt-n5">Create</h1>
+    <p class="lead text-white mt-3">On this page you can create new ingredient</p>
+  {% endif %}
+{% endblock %}
 
-<form action="" method="post" novalidate>
+{% block content %}
+<form method="post">
   {% csrf_token %}
   {{ form }}
-
-  <input type="submit" value="Submit">
+<button type="submit" class="btn btn-dark">Submit</button>
 </form>
-
-</body>
-</html>
+{% endblock %}

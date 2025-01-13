@@ -13,6 +13,8 @@
     <div class="text-end col">
       <a class="btn btn-dark"
          href="{% url 'kitchen:cook-update' pk=cook.id %}">Update</a>
+      <a class="btn btn-danger"
+         href="{% url 'kitchen:cook-delete' pk=cook.id %}">Delete</a>
     </div>
   </div>
 

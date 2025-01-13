@@ -40,7 +40,9 @@
                   {{ dish.id }}
                 </th>
                 <th scope="row">
+                  <a href="{% url 'kitchen:dish-detail' pk=dish.id %}">
                   {{ dish.name }}
+                  </a>
                 </th>
                 <th scope="row">
                   {{ dish.price }}

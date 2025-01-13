@@ -1,46 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Dish List</title>
-</head>
-<body>
-<h1>Dish List</h1>
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
 
-{% if dish_list %}
-  <table>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Update</th>
-      <th>Delete</th>
-    </tr>
+{% block page_description %}
+  <h1 class="text-white font-weight-black pt-3 mt-n5">Dishes</h1>
+  <p class="lead text-white mt-3">On this page you can see all dishes in you restaurant</p>
+{% endblock %}
 
-    {% for dish in dish_list %}
-      <tr>
-        <td>
-          {{ dish.id }}
-        </td>
-        <td>
-          {{ dish.name }}
-        </td>
-        <td>
-          {{ dish.price }}
-        </td>
-        <td>
-          <a href="{% url 'kitchen:dish-update' pk=dish.id %}">Update</a>
-        </td>
-        <td>
-          <a href="{% url 'kitchen:dish-delete' pk=dish.id %}">Delete</a>
-        </td>
-      </tr>
-    {% endfor %}
-  </table>
+{% block content %}
+  <div class="ms-auto row">
+    <div class="ms-auto text-start col-4">
+        <form class="row" action="" method="get">
+          <div class="col">{{ search_form|crispy }}</div>
+          <input class="col btn btn-light" type="submit" value="Search">
+        </form>
+    </div>
+    <div class="text-end col">
+      <a href="{% url 'kitchen:dish-create' %}"
+         class="btn btn-dark link-to-page">Create
+      </a>
+    </div>
+  </div>
 
-{% else %}
-  <p>There are no dishes in the service.</p>
-{% endif %}
+      <div class="section text-center table-responsive">
+        {% if dish_list %}
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col"><h5>ID</h5></th>
+              <th scope="col"><h5>Name</h5></th>
+              <th scope="col"><h5>Price</h5></th>
+              <th scope="col"><h5>Update</h5></th>
+              <th scope="col"><h5>Delete</h5></th>
+            </tr>
+            </thead>
 
-</body>
-</html>
+            {% for dish in dish_list %}
+              <tr>
+                <th scope="row">
+                  {{ dish.id }}
+                </th>
+                <th scope="row">
+                  {{ dish.name }}
+                </th>
+                <th scope="row">
+                  {{ dish.price }}
+                </th>
+                <th scope="row">
+                  <a href="{% url 'kitchen:dish-update' pk=dish.id %}">Update</a>
+                </th>
+                <th scope="row">
+                  <a class="link-danger"
+                     href="{% url 'kitchen:dish-delete' pk=dish.id %}">Delete</a>
+                </th>
+              </tr>
+            {% endfor %}
+          </table>
+
+        {% else %}
+          <p>There are no dishes in the service.</p>
+        {% endif %}
+      </div>
+{% endblock %}

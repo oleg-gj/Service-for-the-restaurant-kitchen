@@ -42,9 +42,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "debug_toolbar",
-    "kitchen",
     "crispy_forms",
-    "crispy_bootstrap5"
+    "crispy_bootstrap5",
+    "kitchen",
 ]
 
 MIDDLEWARE = [
@@ -113,6 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = "kitchen.Cook"
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

@@ -23,13 +23,13 @@ class CookSearchForm(forms.Form):
 
 
 class DishForm(forms.ModelForm):
-    cooks = forms.ModelChoiceField(
+    cooks = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
-        widget=forms.CheckboxSelectMultiple(),
+        widget=forms.CheckboxSelectMultiple,
     )
-    ingredients = forms.ModelChoiceField(
+    ingredients = forms.ModelMultipleChoiceField(
         queryset=Ingredient.objects.all(),
-        widget=forms.CheckboxSelectMultiple(),
+        widget=forms.CheckboxSelectMultiple
     )
 
     class Meta:

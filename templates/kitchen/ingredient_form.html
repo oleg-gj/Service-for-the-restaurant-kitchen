@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block page_description %}
+  {% if ingredient %}
+    <h1 class="text-white font-weight-black pt-3 mt-n5">Update</h1>
+    <p class="lead text-white mt-3">On this page you can update new ingredient</p>
+  {% else %}
+    <h1 class="text-white font-weight-black pt-3 mt-n5">Create</h1>
+    <p class="lead text-white mt-3">On this page you can create new ingredient</p>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  {{ form }}
+<button type="submit" class="btn btn-dark">Submit</button>
+</form>
+{% endblock %}

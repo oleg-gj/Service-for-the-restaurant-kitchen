@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block page_description %}
+  <h1 class="text-white font-weight-black pt-3 mt-n5">Cook detail</h1>
+  <p class="lead text-white mt-3">On this page you can se detail description about cook</p>
+{% endblock %}
+
+{% block content %}
+  <div class="ms-auto row">
+    <div class="ms-auto text-start col">
+      <h2>Username: <strong>{{ cook.username }}</strong></h2>
+    </div>
+    <div class="text-end col">
+      <a class="btn btn-dark"
+         href="{% url 'kitchen:cook-update' pk=cook.id %}">Update</a>
+      <a class="btn btn-danger"
+         href="{% url 'kitchen:cook-delete' pk=cook.id %}">Delete</a>
+    </div>
+  </div>
+
+  <p><strong>First name:</strong> {{ cook.first_name }}</p>
+  <p><strong>Last name:</strong> {{ cook.last_name }}</p>
+  <p><strong>Experience:</strong> {{ cook.year_of_experience }}</p>
+  <p><strong>Is staff:</strong> {{ cook.is_staff }}</p>
+
+  <div>
+    <h4>Dishes: </h4>
+    {% for dish in cook.dishes.all %}
+      <hr>
+      <p><strong>Name:</strong> {{ dish.name }}</p>
+      <p><strong>Description:</strong> {{ dish.description }}</p>
+      <p><strong>Price:</strong> {{ dish.price }}</p>
+
+    {% empty %}
+      <p>No dishes!</p>
+    {% endfor %}
+  </div>
+{% endblock %}

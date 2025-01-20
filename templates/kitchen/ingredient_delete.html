@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block page_description %}
+  <h1 class="text-white font-weight-black pt-3 mt-n5">Delete ingredient</h1>
+{% endblock %}
+
+
+{% block content %}
+  <div class="ms-auto text-center">
+    <h4>Are you sure you want to delete the ingredient <strong>{{ ingredient }}</strong>?</h4>
+    <form method="post">
+      <a class="btn btn-danger" href="{% url 'kitchen:ingredient-list' %}">Cancel</a>
+      {% csrf_token %}
+      <input class="btn btn-dark" type="submit" value="Yes, delete">
+    </form>
+  </div>
+{% endblock %}

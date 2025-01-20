@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block page_description %}
+  <h1 class="text-white font-weight-black pt-3 mt-n5">Ingredients</h1>
+  <p class="lead text-white mt-3">On this page you can see all ingredients in you restaurant.</p>
+{% endblock %}
+
+{% block content %}
+      <div class="ms-auto row">
+    <div class="ms-auto text-start col-4">
+        <form class="row" action="" method="get">
+          <div class="col">{{ search_form|crispy }}</div>
+          <input class="col btn btn-light" type="submit" value="Search">
+        </form>
+    </div>
+    <div class="text-end col">
+      <a href="{% url 'kitchen:ingredient-create' %}"
+         class="btn btn-dark link-to-page">Create
+      </a>
+    </div>
+  </div>
+
+      <div class="section text-center table-responsive">
+
+        {% if ingredient_list %}
+          <table class="table">
+            <tr>
+              <th scope="col"><h5>ID</h5></th>
+              <th scope="col"><h5>Name</h5></th>
+              <th scope="col"><h5>Calories</h5></th>
+              <th scope="col"><h5>Update</h5></th>
+              <th scope="col"><h5>Delete</h5></th>
+            </tr>
+
+            {% for ingredient in ingredient_list %}
+              <tr>
+                <th scope="row">
+                  {{ ingredient.id }}
+                </th>
+                <th scope="row">
+                  {{ ingredient.name }}
+                </th>
+                <th scope="row">
+                  {{ ingredient.caloric_content }}
+                </th>
+                <th scope="row">
+                  <a href="{% url 'kitchen:ingredient-update' pk=ingredient.id %}">Update</a>
+                </th>
+                <th scope="row">
+                  <a class="link-danger" href="{% url 'kitchen:ingredient-delete' pk=ingredient.id %}">Delete</a>
+                </th>
+              </tr>
+            {% endfor %}
+          </table>
+
+        {% else %}
+          <p>There are no dishes in the service.</p>
+        {% endif %}
+      </div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block page_description %}
+  <h1 class="text-white font-weight-black pt-3 mt-n5">Cooks</h1>
+  <p class="lead text-white mt-3">On this page you can see all cooks in you restaurant</p>
+{% endblock %}
+
+{% block content %}
+  <div class="ms-auto row">
+    <div class="ms-auto text-start col-4">
+        <form class=" ms-auto row" action="" method="get">
+          <div class="col">{{ search_form|crispy }}</div>
+          <input class="col btn btn-light" type="submit" value="Search">
+        </form>
+    </div>
+    <div class="text-end col">
+      <a href="{% url 'kitchen:cook-create' %}"
+         class="btn btn-dark link-to-page">Create
+      </a>
+    </div>
+  </div>
+
+      <div class="section text-center table-responsive">
+
+          {% if cook_list %}
+          <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"><h5>ID</h5></th>
+              <th scope="col"><h5>Username</h5></th>
+              <th scope="col"><h5>First name</h5></th>
+              <th scope="col"><h5>Last name</h5></th>
+              <th scope="col"><h5>Experience</h5></th>
+            </tr>
+          </thead>
+            {% for cook in cook_list %}
+              <tbody class="table-group-divider">
+              <tr>
+                <th scope="row">{{ cook.id }}</th>
+                <th scope="row">
+                  <a href="{% url 'kitchen:cook-detail' pk=cook.id %}" title="Detail">
+                    {{ cook.username }}
+                  </a>
+                </th>
+                <th scope="row">{{ cook.first_name }}</th>
+                <th scope="row">{{ cook.last_name }}</th>
+                <th scope="row">{{ cook.year_of_experience }}</th>
+              </tr>
+              </tbody>
+            {% endfor %}
+          </table>
+        {% else %}
+          <p>There are no cooks in the service.</p>
+        {% endif %}
+      </div>
+
+{% endblock %}
